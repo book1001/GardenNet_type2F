@@ -1,0 +1,33 @@
+:root {
+  /* --bg: #19b9e5; */
+  /* --bg: #ff996b; */
+  --bg: #aae354;
+  /* --bg-gradient: linear-gradient(0deg, rgba(25, 185, 229, 0) 0%, rgba(25, 185, 229, 1) 50%, rgba(25, 185, 229, 1) 100%); */
+  --bg-gradient: linear-gradient(0deg, rgba(25, 185, 229, 0) 0%, rgba(170, 227, 84, 1) 50%, rgba(170, 227, 84, 1) 100%);
+
+  --fc-today-bg-color: transparent;
+  --fc-event-bg-color: transparent;
+  --fc-event-border-color: transparent;
+  --fc-border-color: transparent;
+  --fc-small-font-size: 12.5px;
+  --fc-event-text-color: #000000;
+
+
+  --b-text: black;
+  --b-bg: white;
+
+  --p1-text: black;
+  /* --p1-bg: yellow; */
+  --p1-bg: #f8ff8a;
+  --p2-text: black;
+  /* --p2-bg: #00ff00; */
+  /* --p2-bg: #75ff75; */
+  --p2-bg: #c3ffbf;
+  --p3-text: black;
+  /* --p3-bg: #d3bfff; */
+  /* --p3-bg: #c5e2ff; */
+  --p3-bg: #d7dfff;
+  --p4-text: rgb(9, 8, 8);
+  --p4-bg: white;
+  --pn-text: var(--bg);
+}

@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Typography 1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- <meta http-equiv="Content-type" content="text/html;charset=UTF-8"> -->
+    <!-- <link rel="shortcut icon" href="favicon.png"> -->
 
+    <!-- css -->
+    <link rel="stylesheet" href="/root.css">
+    <link rel="stylesheet" href="/font.css">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index_detail.css">
+    <link rel="stylesheet" href="/index_media.css">
+
+    <!-- script: index_ie.js -->
+    <script type="text/javascript" src="index_ie.js"></script>
+
+    <!-- script: Masonry -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+    <!--  This is for Are.na routing  -->
+    <script src="//unpkg.com/navigo"></script>
+
+    <!-- script: P5js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Menu ================================================================== -->
+    <div class="menu-bg"></div>
+
+    <div class="menu-top-left">
+      <button class="menu-index font-menu" onclick="location.href='index.html'" type="button">
+        Typography
+      </button>
+      <button id="row4" class="menu-btn font-menu" onclick="menuSyllabus()" type="button">
+        Syllabus
+      </button>
+      <button id="row3" class="menu-btn font-menu" type="button">
+        ❋
+      </button>
+      <button id="row1" class="menu-btn font-menu" onclick="menuProjects()" type="button">
+        ➊➋
+      </button>
+      <button id="row2" class="menu-btn font-menu" type="button">
+        ❸
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://docs.google.com/document/d/1S47t6xektJSz7uXimXoCTjHpTneCe6-_D0pH8FF_vv8/edit?usp=drive_link', '_blank');" type="button">
+        Sign-up
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://calendly.com/lee-halim/30min', '_blank');" type="button">
+        Office Hours
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://bu-typography1.slack.com', '_blank');" type="button">
+        Slack
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://drive.google.com/drive/folders/1dmAWzVd_u070e-pd0mY13dF2hKP_iuIG?usp=drive_link', '_blank');" type="button">
+        G-Drive
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://www.are.na/bu-2-typography-1/type-research-r7vvxiwfbbk', '_blank');" type="button">
+        Are.na
+      </button>
+      <button class="menu-btn blank font-menu" onclick="javascript:window.open('https://docs.google.com/spreadsheets/d/1T1u9PzHMfvVmpMhWtcamB9xZaG4y0LZlL72dPDz-lZY/edit?usp=drive_link', '_blank');" type="button">
+        Attendance
+      </button>
+    </div>
+
+
+    <!-- Body: P1 P2 ================================================================== -->
+    <div id="main" class="row1">
+      <div class="scrollContents">
+
+        <div class="col2-text" style="text-indent: 0px;">
+          <!-- --------------------------------------------------------------- -->
+          <div id="p1_magicSpells_1">
+            <iframe class="col-arena-L" src="schedule_w/weekly_p1.html"></iframe>
+          </div>
+          <!-- --------------------------------------------------------------- -->
+          <div id="p1_magicSpells_2">
+            <iframe class="col-arena-R" src="arena/class_note.html"></iframe>
+          </div>
+          <!-- --------------------------------------------------------------- -->
+        </div>
+
+        <div class="p-title">
+          <div class="p-title-subM">
+            <div style="text-align: center;">
+              <button id="btn_p1_1" class="p-title-subM-btn" onclick="p1_magicSpells_1()" type="button">
+                Note
+              </button>
+              |
+              <button id="btn_p1_2" class="p-title-subM-btn" onclick="p1_magicSpells_2()" type="button">
+                Resources
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Body: P3 ================================================================== -->
+    <div class="row2">
+      <div class="scrollContents">
+        
+        <div class="col2-text" style="text-indent: 0px;">
+          <!-- --------------------------------------------------------------- -->
+          <div id="p3_ghosts_1">
+            <iframe class="col-arena-L" src="schedule_w/weekly_p3.html"></iframe>
+          </div>
+          <!-- --------------------------------------------------------------- -->
+          <div id="p3_ghosts_2">
+            <iframe class="col-arena-R" src="arena/class_note.html"></iframe>
+          </div>
+        </div>
+
+        <div class="p-title">
+  
+          <div class="p-title-subM">
+            <div style="text-align: center;">
+              <button id="btn_p3_1" class="p-title-subM-btn" onclick="p3_ghosts_1()" type="button">
+                Note
+              </button>
+              |
+              <button id="btn_p3_2" class="p-title-subM-btn" onclick="p3_ghosts_2()" type="button">
+                Resources
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Body: P4 ================================================================== -->
+    <div class="row3">
+      <div class="scrollContents">
+        
+        <div class="col2-text" style="text-indent: 0px;">
+          <!-- --------------------------------------------------------------- -->
+          <div id="p4_terra_1">
+            <iframe class="col-arena-L" src="schedule_w/weekly.html"></iframe>
+          </div>
+          <!-- --------------------------------------------------------------- -->
+          <div id="p4_terra_2">
+            <iframe class="col-arena-R" src="arena/class_note.html"></iframe>
+            <!-- <iframe class="col-arena-R" src="arena/class_resource.html"></iframe> -->
+          </div>
+          <!-- --------------------------------------------------------------- -->
+        </div>
+        
+        <div class="p-title">
+          
+          <div class="p-title-subM">
+            <div style="text-align: center;">
+              <button id="btn_p4_1" class="p-title-subM-btn" onclick="p4_terra_1()" type="button">
+                Note
+              </button>
+              |
+              <button id="btn_p4_2" class="p-title-subM-btn" onclick="p4_terra_2()" type="button">
+                Resources
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Body: Syllabus ================================================================== -->
+    <div class="row4">
+      <div class="scrollContents">
+        <div class="col2-full" style="text-indent: 0px;">
+          <div id="syllabus_1">
+            <div class="h-top"></div>
+        
+            <div class="col2">
+              <h3 style="text-indent: 0px;">
+                <div>
+                  <h3>
+                    Fall 2026 | Sophomore Typography 1
+                  </h3>
+                  <h3>
+                    Rules of Typography
+                  </h3>
+                </div>
+              </h3>
+              <h3 style="text-indent: 0px;">
+                <div>
+                  <h3>
+                    CFA AR 385 | 2 Credits
+                  </h3>
+                  <h3>
+                    Location: Room 355 (855 Commonwealth Ave)
+                  </h3>
+                </div>
+              </h3>
+            </div>
+
+            <br>
+
+            <div class="col2">
+              <h3 style="text-indent: 0px;">
+                <div>
+                  <h3 style="display: grid; grid-template-columns: 125px auto;">
+                    <ul>
+                      <li>
+                        Instructor
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        <ul class="bulletS">
+                          <li class="link"><a href = "https://leehalim.com" target="_blank">Halim Lee (She/ Her)</a></li>
+                          <li class="link"><a href = "mailto: halim@bu.edu">halim@bu.edu</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </h3>
+                  <br>
+                  <h3 style="display: grid; grid-template-columns: 140px auto;">
+                    <ul>
+                      <li>
+                        Office Hours
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        Wed 5:30 — 7:30 pm
+                      </li>
+                    </ul>
+                  </h3>
+                </div>
+              </h3>
+
+              <h3 style="text-indent: 0px;">
+                <div>
+                  <h3 style="display: grid; grid-template-columns: 45px auto;">
+                    <ul>
+                      <li>
+                        A1 |
+                      </li>
+                      <li>
+                        B1 |
+                      </li>
+                      <br>
+                    </ul>
+                    <ul>
+                      <li>
+                        Wed 8:00 — 10:45 PM
+                      </li>
+                      <li>
+                        Wed 2:30 — 5:15 PM
+                      </li>
+                      <br>
+                    </ul>
+                  </h3>
+                  <h3 style="display: grid; grid-template-columns: 45px auto;">
+                    <ul>
+                      <li>
+                        TA |
+                      </li>
+                      <br>
+                    </ul>
+                    <ul>
+                      <li class="link">Anna (Annalise) Jacobson (She/ Her)</li>
+                      <li class="link"><a href = "mailto: ajacob01@bu.edu">ajacob01@bu.edu</a></li>
+                      <br>
+                    </ul>
+                  </h3>
+                </div>
+                <br>
+                <div>
+                </div>
+              </h3>
+            </div>
+
+            <br>
+
+            <div class="col2" style="text-indent: 0px;">
+              <div>
+                <h3>Description</h3>
+                <h4>
+                  In this introductory course for sophomore graphic design majors, students will study the fundamentals of typography, from its history and anatomy to organizational structures, legibility and hierarchy. Legibility and hierarchy will be examined with increasing complexity from the letterform, to the word, sentence, paragraph and page. Students will learn characteristics of major type families, how to create and use a typographic grid and to work with type in a dynamic environment.
+                </h4><br><br>
+
+                <h3>Learning Outcomes</h3>
+                <h4><ul class="bullet">
+                  <li>Study typographic terminology</li>
+                  <li>Explore type as an independent design element</li>
+                  <li>Cultivate typographic sensibilities</li>
+                  <li>Develop grid systems as organizational tools</li>
+                </ul></h4><br>
+
+                <h3>Courseware</h3>
+                <h4>
+                  Please check our class website and Slack channel regularly. The class website will be used for sign-ups and uploading course materials, while Slack will be used for group communication. We will use Are.na for sharing insightful resources.
+                </h4><br><br>
+
+                <h3>Project Submission</h3>
+                <h4>
+                  All projects should be uploaded to the class Google Drive by the date specified in the class schedule. Files uploaded after this date will be rejected for your semester grade. 
+                </h4><br><br>
+
+                <h3>Grading</h3>
+                <h4>
+                  You will receive one-semester grade (A—F) according to the following metric:
+                </h4><br>
+                <h4>
+                  <ul class="bulletG6">
+                    <li>Course assignments & Projects :<br>clarity of topics and contents, final deliverables, visual ability</li>
+                  </ul>
+                  <ul class="bulletG3">
+                    <li>Depth & Breadth :<br>in-depth research, exploration, curiosity, and experimentation</li>
+                  </ul>
+                  <ul class="bulletG1">
+                    <li>Class Participation & Contribution :<br>actively participate and contribute in class</li>
+                  </ul>
+                </ul></h4><br>
+                <hr><br><br>
+
+                <!-- <h3>​​Course Policies</h3> -->
+                <h3>Disability Statement</h3>
+                <h4>
+                  Students who have self-identified, provided documentation of their disability, and requested reasonable accommodations may be entitled to receive approved modifications in the classroom, appropriate academic adjustments, or auxiliary aids that enable them to participate in and benefit from all educational programs and activities. Please see http://www.bu.edu/disability for more details.  
+                </h4><br><br>
+
+                <h3>Attendance & Absences</h3>
+                <h4>
+                  Please make every effort to arrive punctually. You must attend all the classes. According to the SVA Attendance Policy, unless specific permission for absence is arranged with the instructor of this course, students must attend class to receive credit for the course. Unexcused absences exceeding 1/4 of the total class hours in a given semester are considered excessive in all SVA courses. Tardiness and any unexcused absences will reduce your course grade. Three unexcused absences will reduce your semester grade by one step (e.g. A- to B+). Seven unexcused absences will earn you a failing grade for the course.  
+                </h4><br><br>
+
+                <h3>Wellness and Health</h3>
+                <h4>
+                  Your health and well-being are important for your journey as a professional graphic designer. It is important to work hard and balance that with rest, self-care, and attention to your mental and physical health. I will challenge you in this class through assignments, activities, and discussions. However, the work in this class should not be at the expense of your well-being. If for any reason you are struggling to find balance in your work life and health/wellbeing, please reach out. I am happy to discuss ways in which this class can support you in your learning and growth. You can find more resources provided by BU CFA Mental Health & Wellness Resources.
+                </h4><br><br>
+                <!-- <hr><br><br> -->
+
+              </div>
+
+              <!-- --------------------------------------------------------------- -->
+
+              <div>
+                <h3>🄋 Type Research</h3>
+                <h4>
+                  Knowing what is feasible in programming greatly expands the range of ideas you can explore in your projects. Interactive Design is a collaborative space where every class member supports one another. To grow our coding knowledge, we will operate a Collaborative Codebox Are.na channel. Each member will sign up for a date and share five code-related resources they find interesting or new. These resources will be posted on the Are.na channel so that everyone can use them as assets for future projects. The five resources can be anything you think will be helpful to yourself and the class. For example, they could be an online CSS generator, a new JavaScript library, a sample code snippet you discovered on CodePen, or even an AI code generation tool.
+                </h4><br><br>
+                <hr><br><br>
+
+                <h3>➊ Modular Typeface</h3>
+                <h4>
+                  For your first project, you will select one list from the options provided below and create a publication based on it. The key to this project is how you interpret the list and how you translate that interpretation into design. The form of your publication is completely open. Depending on your interpretation, your publication can be highly experimental, classical, or take any other approach that you find appropriate for the content.
+                </h4><br><br>
+                <hr><br><br>
+
+                <h3>➋ Type Specimen</h3>
+                <h4>
+                  Based on the workshops from Project 1, you will create a single-page web zine (or multiple pages if you are comfortable with programming). The choice of text and its length are entirely up to you—it can be something you’ve written before or a new piece you would like to explore. It is important to apply interactions that suit your text in order to strengthen the narrative and create a more engaging experience for the reader. You are encouraged to use interactions that were not included in Project 1, or to combine multiple interactions together.
+                </h4><br><br>
+                <hr><br><br>
+
+                <h3>❸ Inventory Catalog/h3>
+                <h4>
+                  For your final project, you will focus on developing the overall system and structure of a publication. Your publication should include at least five different types of page layouts. The choice of text is open, but you should select a text that has enough volume and complexity to allow you to explore a variety of page layouts and typographic structures. Texts such as encyclopedia entries, instructions, or exhibition catalog texts can be good examples, as they often contain different types and levels of information that can be organized in various ways.
+                </h4><br>
+
+              </div>
+            </div>
+          </div>
+            
+          <div id="syllabus_2">
+            <iframe class="col-arena-R" src="schedule_m/monthly.html"></iframe>
+            <!-- <iframe id="noteText" class="col-arena-R" src="https://g-calendar-24f.glitch.me"></iframe> -->
+          </div>
+        </div>
+
+        <div class="p-title">
+          <div class="p-title-subM">
+            <div style="text-align: center;">
+              <button id="btn_s_1" class="p-title-subM-btn" onclick="s_1()" type="button">
+                Syllabus
+              </button>
+              |
+              <button id="btn_s_2" class="p-title-subM-btn" onclick="s_2()" type="button">
+                Schedule
+              </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+    <!-- Body: Are.na ================================================================== -->
+    <iframe id="notePen" class="toolsWorld" src="/note/index.html"></iframe>
+
+
+    <!-- script ================================================================== -->
+    <script type="text/javascript" src="index.js"></script>
+
+
+  </body>
+</html>
