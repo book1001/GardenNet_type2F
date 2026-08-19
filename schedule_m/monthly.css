@@ -29,7 +29,15 @@ html,body {
 
 /* Day: Specific ================================================ */
 
-.fc-day-fri {
+/* .fc-day-mon {
+  width: 20%;
+}
+
+.fc-day-tue {
+  width: 20%;
+} */
+
+.fc-day-wed {
   width: 35%;
 }
 
@@ -59,7 +67,7 @@ html,body {
   margin-block-end: 0;
   padding-inline-start: 0;
   list-style: none;
-  padding-left: 15px;
+  padding-left: 3px;
   word-wrap: break-word;
 }
 
@@ -168,6 +176,10 @@ html,body {
   .fc-day-tue {
     display: none;
   }
+
+  /* .fc-day-wed {
+    display: none;
+  } */
 
   .fc-day-thu {
     display: none;

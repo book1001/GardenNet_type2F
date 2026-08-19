@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
   const apiKey = 'AIzaSyA5qWllBxBtVC-9l3Ck5nt_9bMbtWapEBc';
-  const calendarId = 'b92714a2e02e225888e03bbeb30556c7d0f671cd1479df967d5334b843c62f4c@group.calendar.google.com';
+  const calendarId = '203405f4b7f9c26983967f452d47615a1db3da2b1fcc3bc9ea7ac66b9f3e17f8@group.calendar.google.com';
 
   const calendarEl = document.getElementById('schedule-s');
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridFourWeek',
     timeZone: 'America/New_York',
-    initialDate: '2026-01-23',
+    initialDate: '2026-09-02',
     firstDay: 1,
     views: {
       dayGridFourWeek: {
         type: 'dayGrid',
-        duration: { weeks: 15 },
+        duration: { weeks: 14 },
       },
     },
     headerToolbar: {
@@ -80,6 +80,21 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       else if (element.textContent.includes('May')) {
         element.textContent = element.textContent.replace('May', '5/');
+      }
+      else if (element.textContent.includes('August')) {
+        element.textContent = element.textContent.replace('August', '8/');
+      }
+      else if (element.textContent.includes('September')) {
+        element.textContent = element.textContent.replace('September', '9/');
+      }
+      else if (element.textContent.includes('October')) {
+        element.textContent = element.textContent.replace('October', '10/');
+      }
+      else if (element.textContent.includes('November')) {
+        element.textContent = element.textContent.replace('November', '11/');
+      }
+      else if (element.textContent.includes('December')) {
+        element.textContent = element.textContent.replace('December', '12/');
       }
     });
     
