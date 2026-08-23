@@ -201,17 +201,21 @@ u {
   background: white;
 }
 
-i {
+/* i {
   display: inline;
   font-style: normal;
   color: #ffffff;
   background: #ff00ff;
-}
+} */
 
 .bb {
   display: inline;
+  font-style: normal;
+  color: #ffffff;
+  background: #ff00ff;
+  /* display: inline;
   color: black;
-  background: #ffa0e7;
+  background: #ffa0e7; */
 }
 
 .fd {
