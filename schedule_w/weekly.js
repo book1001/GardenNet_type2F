@@ -1,152 +1,214 @@
-
-
-let page = 1; // Initialize the page number
+let page = 1;
+let isLoading = false;
+let hasMorePages = true;
+let scrollTimer = null;
+let retryAfter = 0;
 
 window.onload = function() {
-  // Initial renering
   renderTitle(slug);
   renderChannel(slug, page);
-}
+};
 
 function handleScroll() {
-  let isScrollAtBottom = (window.pageYOffset + window.innerHeight + 10 > document.body.scrollHeight);
+  clearTimeout(scrollTimer);
 
-  if (isScrollAtBottom) {
-    page++;
-    renderChannel(slug, page);
-  }
-  console.log(page);
+  scrollTimer = setTimeout(() => {
+    if (window.pageYOffset + window.innerHeight + 300 > document.documentElement.scrollHeight && !isLoading && hasMorePages && Date.now() > retryAfter) {
+      page++;
+      renderChannel(slug, page);
+    }
+  }, 200);
 }
 
 window.addEventListener('scroll', handleScroll);
-window.addEventListener('touchmove', handleScroll);
 
 
+// ======================================================
+// Channel Title
+// ======================================================
 
 function renderTitle(slug) {
-  // Fetch the channel title from the Are.na API
-  let url = `https://api.are.na/v2/channels/${slug}/collaborators`;
+  fetch(`https://api.are.na/v3/channels/${slug}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Are.na API error: ${response.status}`);
+      }
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => document.title = data.channel_title);
+      return response.json();
+    })
+    .then(channel => {
+      document.title = channel.title;
+    })
+    .catch(error => {
+      console.error('Failed to load channel title:', error);
+    });
 }
 
+
+// ======================================================
+// Channel Contents
+// ======================================================
+
 function renderChannel(slug, page) {
-  // Add a loading message
-  // let loading = `Loading...`;
-  // document.body.innerHTML = loading;      
+  if (isLoading || !hasMorePages || Date.now() < retryAfter) {
+    return;
+  }
 
-  // Fetch the channel data from the Are.na API
-  let time = Date.now();
-  let per = 30;
-  let url = `https://api.are.na/v2/channels/${slug}/contents?t=${time}&direction=desc&sort=position&page=${page}&per=${per}`;
+  isLoading = true;
 
+  fetch(`https://api.are.na/v3/channels/${slug}/contents?page=${page}&per=30&sort=position_desc`)
+    .then(response => {
+      if (response.status === 429) {
+        let reset = Number(response.headers.get('X-RateLimit-Reset'));
 
-  fetch(url, {cache: 'no-cache'})
-    .then(response => response.json())
+        retryAfter = reset ? reset * 1000 : Date.now() + 60000;
+
+        throw new Error('Are.na API rate limit reached');
+      }
+
+      if (!response.ok) {
+        throw new Error(`Are.na API error: ${response.status}`);
+      }
+
+      return response.json();
+    })
     .then(channel => {
 
-      // Channel Info
-      // document.body.innerHTML = `
-      let elements = `${channel.contents.map(block => {
+      hasMorePages = channel.meta?.has_more_pages ?? false;
+
+      let elements = (channel.data || []).map(block => {
+
+        return `
+          <div class="Block ${block.type} ${block.title || ''}">
+
+            ${(() => {
+
+              switch (block.type) {
+
+                // ======================================================
+                // Image
+                // ======================================================
+
+                case 'Image':
+                  return `
+                    <a href="https://www.are.na/block/${block.id}" class="BlockInner__Link">
+                      <img class="BlockInner__Image" src="${block.image?.src}">
+                    </a>
+                    <a href="https://www.are.na/block/${block.id}">
+                      <p style="text-align: center; text-transform: uppercase;">${block.title}</p>
+                    </a>
+                  `;
 
 
-            // We are going to return HTML, mixed in with the data from the block.
-            return `
-              <div class="Block ${block.class} ${block.title}">
+                // ======================================================
+                // Text
+                // ======================================================
 
-                ${(() => {
-                  if (block.title && block.class !== 'Link' && block.class !== 'Channel') {
-                    return ``;
-                  }
+                case 'Text':
+                  return `
+                    <div class="cell1">
+                      <p style="text-align: center; text-transform: uppercase;">${block.title || ''}</p>
+                    </div>
 
-                  return ``;
-                })()}
+                    <div class="cell2">
+                      <p>${block.description?.plain || ''}</p>
+                    </div>
+
+                    <div class="cell3">
+                      ${block.content?.plain || ''}
+                    </div>
+                  `;
 
 
-                ${(() => {
-                  // Return a different bit of HTML, depending on what type of block it is
-                  switch (block.class) {
+                // ======================================================
+                // Attachment
+                // ======================================================
 
-                    case "Image":
-                      return `
-                      <a href="https://www.are.na/block/${block.id}" class="BlockInner__Link">
-                        <img class="BlockInner__Image" src="${block.image.large.url}"/>
-                      </a>
-                      <a href="https://www.are.na/block/${block.id}">
-                        <p style="text-align: center; text-transform: uppercase;">
+                case 'Attachment':
+                  return `
+                    <a href="https://www.are.na/block/${block.id}" class="BlockInner__Channel">
+                      – Open PDF
+                    </a>
+                    <a href="https://www.are.na/block/${block.id}">
+                      <p style="max-height: 90px; overflow-y: auto; text-align: center; text-transform: uppercase;">
+                        ${block.title || ''}
+                      </p>
+                    </a>
+                  `;
+
+
+                // ======================================================
+                // Link
+                // ======================================================
+
+                case 'Link':
+                  return `
+                    <a href="${block.source?.url}" class="BlockInner__Link">
+                      <img class="BlockInner__Image" src="${block.image?.src}">
+                    </a>
+                    <a href="https://www.are.na/block/${block.id}">
+                      <p style="text-align: center; text-transform: uppercase;">
                         ${block.title}
-                      </p></a>
-                      `;
-                      
-                    case "Text":
-                      return `
-                      <div class="cell1">
-                        <p style="text-align: center; text-transform: uppercase;">
-                          ${block.title}
-                        </p>
-                      </div>
-                      <div class="cell2">
-                        <p>
-                          ${block.description}
-                        </p>
-                      </div>
-                      <div class="cell3">
-                        ${block.content}
-                      </div>
-                      `;
-                      
-                    case "Attachment":
-                      return `
-                      <a href="https://www.are.na/block/${block.id}" class="BlockInner__Channel">
-                        – Open PDF
-                      </a>
-                      <a href="https://www.are.na/block/${block.id}">
-                        <p style="max-height: 90px; overflow-y:auto; text-align: center; text-transform: uppercase;">
-                          ${block.title}
-                        </p>
-                      </a>
-                      `;
-                
-                    case "Link":
-                      return `
-                      <a href="${block.source && block.source.url}" class="BlockInner__Link">
-                        <img class="BlockInner__Image" src="${block.image.large.url}"/>
-                      </a>
-                      <a href="https://www.are.na/block/${block.id}"><p style="text-align: center; text-transform: uppercase;">
+                      </p>
+                    </a>
+                  `;
+
+
+                // ======================================================
+                // Embed
+                // ======================================================
+
+                case 'Embed':
+                  return `
+                    <a href="${block.source?.url}" class="BlockInner__Link">
+                      <img class="BlockInner__Image" src="${block.image?.src}">
+                    </a>
+                    <a href="https://www.are.na/block/${block.id}">
+                      <p style="text-align: center; text-transform: uppercase;">
                         ${block.title}
-                      </p></a>
-                      `;
-                      
-                    case "Media":
-                      return `
-                      <a href="${block.source && block.source.url}" class="BlockInner__Link">
-                        <img class="BlockInner__Image" src="${block.image.large.url}"/>
-                      </a>
-                      <a href="https://www.are.na/block/${block.id}"><p style="text-align: center; text-transform: uppercase;">
-                        ${block.title}
-                      </p></a>
-                      `;
-                    
-                    case "Channel":
-                      return `
-                      <a href="https://www.are.na/channel/${block.slug}" class="BlockInner__Link" style="color: #ffffff;">
-                        <img class="BlockInner__Image" src="../img/arena.jpg">
-                      </a>
-                      <a href="https://www.are.na/channel/${block.slug}">
-                        <p style="text-align: center; text-transform: uppercase;">
-                        ${block.title}
-                      </p></a>
-                      `;
-                  }
-                })()}
-              </div>
-            `;
-          }).join("")}`;
-    
-    let contents = document.getElementsByClassName("ChannelContents")[0];
-    contents.insertAdjacentHTML("beforeend", elements);
-  
-  })
+                      </p>
+                    </a>
+                  `;
+
+
+                // ======================================================
+                // Channel
+                // ======================================================
+
+                case 'Channel':
+                  return `
+                    <a href="https://www.are.na/channel/${block.slug}" class="BlockInner__Link" style="color: #ffffff;">
+                      <img class="BlockInner__Image" src="../img/arena.jpg">
+                    </a>
+                    <a href="https://www.are.na/channel/${block.slug}">
+                      <p style="text-align: center; text-transform: uppercase;">
+                        ${block.title || ''}
+                      </p>
+                    </a>
+                  `;
+
+
+                default:
+                  console.log('Unknown Are.na block type:', block.type, block);
+                  return '';
+              }
+
+            })()}
+
+          </div>
+        `;
+      }).join('');
+
+      document.getElementsByClassName('ChannelContents')[0]?.insertAdjacentHTML('beforeend', elements);
+    })
+    .catch(error => {
+      console.error('Failed to load Are.na channel:', error);
+
+      if (page > 1) {
+        page--;
+      }
+    })
+    .finally(() => {
+      isLoading = false;
+    });
 }
