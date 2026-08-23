@@ -191,7 +191,7 @@ h4.p3::before {
 
 b {
   display: inline;
-  color: lightgray;
+  color: var(--bg);
   background: black;
 }
 
