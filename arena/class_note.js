@@ -55,8 +55,8 @@ function renderChannel(slug, page) {
   }
 
   isLoading = true;
-
-  fetch(`https://api.are.na/v3/channels/${slug}/contents?page=${page}&per=30&sort=position_desc`)
+  
+  fetch(`https://api.are.na/v3/channels/${slug}/contents?page=${page}&per=30&sort=position_desc${page === 1 ? `&t=${Date.now()}` : ''}`)
     .then(response => {
       if (response.status === 429) {
         let reset = Number(response.headers.get('X-RateLimit-Reset'));
