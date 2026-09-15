@@ -118,7 +118,7 @@ function renderChannel(slug, page) {
 
                 case 'Attachment':
                   return `
-                    <a href="${block.source?.url}" class="BlockInner__Link">
+                    <a href="https://www.are.na/block/${block.id}" class="BlockInner__Link">
                       <img class="BlockInner__Image" src="${block.image?.src}">
                     </a>
                     <a href="https://www.are.na/block/${block.id}">
